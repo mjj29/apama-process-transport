@@ -1,0 +1,16 @@
+event Data
+{
+	any data;
+}
+
+monitor Testcase
+{
+	action onload()
+	{
+		on all Data() as d {
+			log d.toString() at INFO;
+		}
+
+		com.softwareag.connectivity.ConnectivityPlugins.onApplicationInitialized();		
+	}
+}

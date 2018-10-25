@@ -1,0 +1,29 @@
+connectivityPlugins:
+  processTransport:
+    libraryName: ProcessTransport
+    class: ProcessTransport
+  mapperCodec:
+    libraryName: MapperCodec
+    class: MapperCodec
+  diagnosticCodec:
+    libraryName: DiagnosticCodec
+    class: DiagnosticCodec
+
+
+startChains:
+  processChain:
+    - apama.eventMap:
+        defaultEventType: Data
+    - mapperCodec:
+       '*':
+         towardsHost:
+            mapFrom:
+              - payload.data: payload
+         towardsTransport:
+            mapFrom:
+              - payload: payload.data
+    - diagnosticCodec:
+        output: file
+        fileName: diag.txt
+    - processTransport:
+        command: [ '/bin/yes' ]
