@@ -26,4 +26,4 @@ startChains:
         output: file
         fileName: diag.txt
     - processTransport:
-        command: [ '/bin/yes' ]
+        command: [ "\\Program Files\\Git\\usr\\bin\\yes.exe", "wibble" ]
